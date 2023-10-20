@@ -1,0 +1,116 @@
+{% extends "user_base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booked Train Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href={{url_for('static',filename='css/main.css')}}>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .container {
+            display: flex;
+            justify-self: center;
+            align-items: center;
+            padding-top: 3rem;
+            position: relative;
+        }
+
+        
+
+        .table {
+            top: 0;
+            right: 10vw;
+            background-color: #fff;
+            padding: 1rem;
+            padding-right: 4rem;
+            border: 1px solid #ccc;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        </style>
+
+<div class="container">
+    <div class="col-lg-12 text-center">
+       
+      <h1>Booking History</h1> 
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Train Number</th>
+                    <th>Source Location</th>
+                    <th>Destination</th>
+                    <th>Date of travel</th>
+                    <th>Departure Time</th>
+                    <th>Arrival Time</th>
+                    <th>Passengers</th>
+                    <th>No. Of Seats</th>
+                    <th>Action</th>
+                    <th>Summary</th>
+                    </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings%}
+                <tr>
+                    <td>{{ booking.train_no }}</td>
+                    <td>{{ booking.source }}</td>
+                    <td>{{ booking.destination }}</td>
+                    <td>{{ booking.date }}</td>
+                    <td>{{ booking.start_time }}</td>
+                    <td>{{ booking.destination_time }}</td>
+                    <td>{% for i in booking.passenger_details %}
+                        {{i.name}} <br>
+                        {% endfor%}
+                    </td>
+                    <td>{{ booking.no_of_seats }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('delete_ticket', id=booking['_id'] , train_no=booking['train_no'] , seats = booking['no_of_seats']) }}">
+                            <button class="btn btn-sm btn-success">Cancel Ticket</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="POST" action="{{ url_for('booking_summary', booking_id=booking['_id'] ) }}">
+                            <button type="submit" style="border:none;color: blue;text-decoration:underline;background-color:transparent;">
+                                Summary
+                            </button>
+                        </form>
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                      {% for category, message in messages %}
+                        {% if category == 'error' %}
+                          <div class="alert alert-danger" role="alert">{{ message }}</div>
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </tr>
+        </table>
+       
+    </div>
+</div> 
+
+
+
+
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

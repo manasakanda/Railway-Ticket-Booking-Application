@@ -1,0 +1,27 @@
+.flashes {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 30px;
+  }
+.error {
+    background-color: #e77971;
+    color: #fff;
+  }
+  
+
+  
+  
+  .flash.success {
+    color: white;
+    background-color: forestgreen;
+    
+  }
+  
+  .flash.warning {
+    color: black;
+    background-color: yellow;
+    
+  }

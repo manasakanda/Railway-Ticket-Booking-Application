@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+
+  <link rel="stylesheet" type="text/css" href={{url_for('static',filename='css/navbar.css')}}>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href={{url_for('static',filename='css/main.css')}}>
+  <style>
+    body.dark-mode {
+        background-color: #333;
+        color: #fff;
+    }
+    form.dark-mode {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .navbar .dark-mode-toggle {
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .navbar .dark-mode-toggle:hover {
+        color: #00bfff;
+    }
+
+    .navbar .dark-mode-toggle i {
+        margin-right: 6px;
+    }
+    button#dark-mode-toggle:focus {
+        outline: none;
+        border: none;
+        background-color: none;
+      }
+      
+    </style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+  <a class="navbar-brand" href="#">My Train App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/booking_history">Dashboard <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/user_dash">Search Train</a>
+      <a class="nav-item nav-link" href="/logout">Logout</a> 
+    </div>
+  </div>
+  <button class="btn dark-mode-toggle ml-3" onclick="toggleDarkMode()">
+    <i class="far fa-moon"></i>
+    <span>DARK MODE</span>
+  </button>
+</nav>
+<script>
+  function toggleDarkMode() {
+      var body = document.body;
+      if (body.classList.contains('dark-mode')) {
+          body.classList.remove('dark-mode');
+          document.querySelector('.dark-mode-toggle i').classList.remove('fa-sun');
+          document.querySelector('.dark-mode-toggle i').classList.add('fa-moon');
+      } else {
+          body.classList.add('dark-mode');
+          document.querySelector('.dark-mode-toggle i').classList.remove('fa-moon');
+          document.querySelector('.dark-mode-toggle i').classList.add('fa-sun');
+      }
+  }
+</script>
+{% block nav %}
+
+{% endblock %}
+
+ 
+
+{% block content %}
+
+{% endblock%}
+
+</body>
+
+</html>

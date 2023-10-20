@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href={{url_for('static',filename='css/navbar.css')}}>
+  <link rel="stylesheet" type="text/css" href={{url_for('static',filename='css/main.css')}}>
+  <style>
+    body.dark-mode {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .navbar .dark-mode-toggle {
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .navbar .dark-mode-toggle:hover {
+        color: #00bfff;
+    }
+
+    .navbar .dark-mode-toggle i {
+        margin-right: 6px;
+    }
+
+    .navbar .profile-circle {
+        margin-left: auto;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .navbar .profile-circle img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+    button#dark-mode-toggle:focus {
+        outline: none;
+        border: none;
+        background-color: none;
+      }
+</style>
+
+
+</head>
+
+<body>
+
+<div class="navbar">
+  <a class="navbar-brand" href="#">My Train App</a>
+
+  <a href="/trains_dash">Dashboard</a>
+
+  <a href="/train_details">Add Trains</a>
+
+
+  <a href="/admin_booking_history">Booking History</a>
+
+  <a href="/logout">Logout</a>
+
+  <div class="profile-circle" onclick="location.href='profile'">
+
+    <img src="https://w7.pngwing.com/pngs/184/113/png-transparent-user-profile-computer-icons-profile-heroes-black-silhouette-thumbnail.png" alt="User Profile">
+
+  </div>
+  <button class="btn dark-mode-toggle ml-3" onclick="toggleDarkMode()">
+    <i class="far fa-moon"></i>
+    <span>DARK MODE</span>
+  </button>
+
+</div>
+</nav>
+<script>
+  function toggleDarkMode() {
+      var body = document.body;
+      if (body.classList.contains('dark-mode')) {
+          body.classList.remove('dark-mode');
+          document.querySelector('.dark-mode-toggle i').classList.remove('fa-sun');
+          document.querySelector('.dark-mode-toggle i').classList.add('fa-moon');
+      } else {
+          body.classList.add('dark-mode');
+          document.querySelector('.dark-mode-toggle i').classList.remove('fa-moon');
+          document.querySelector('.dark-mode-toggle i').classList.add('fa-sun');
+      }
+  }
+</script>
+<div class="get_flashed_messages">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+      {% for category, message in messages %}
+        {% if category == 'error' %}
+          <div class="alert alert-danger mb-3",role="alert">
+            {{message}}
+          </div>
+        {% else %}
+        <div class="alert alert-success mb-3",role="alert">
+        {{message}}
+      </div>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<div class="flashedmessages">
+
+  <!-- flash messages -->
+
+  {% with messages = get_flashed_messages() %}
+
+  {% if messages %}
+
+  {% for message in messages %}
+
+  <div class="row flashes col s12">
+
+      <h3 class="center-align flashmessage col s10 offset-s1">{{ message }}</h3>
+
+  </div>
+
+  {% endfor %}
+
+  {% endif %}
+
+  {% endwith %}
+
+</div>
+</div>
+
+{% block nav %}
+
+{% endblock %}
+
+ 
+
+{% block content %}
+
+{% endblock%}
+
+</body>
+
+</html>

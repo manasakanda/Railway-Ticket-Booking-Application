@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Summary</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href={{url_for('static',filename='css/main.css')}}>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        .passenger-table {
+            width: 100%;
+        }
+
+        .passenger-table th, .passenger-table td {
+            width: 20%;
+            text-align: left;
+        }
+
+        .passenger-details {
+            margin-top: 20px;
+        }
+        .center-align
+        {
+            text-align: center;
+            padding-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Booking Summary</h1>
+        <table>
+            <tr>
+                <th>Booking ID</th>
+                <td>{{ booking_data._id }}</td>
+            </tr>
+            <tr>
+                <th>Train No.</th>
+                <td>{{ booking_data.train_no }}</td>
+            </tr>
+            <tr>
+                <th>Source</th>
+                <td>{{ booking_data.source }}</td>
+            </tr>
+            <tr>
+                <th>Destination</th>
+                <td>{{ booking_data.destination }}</td>
+            </tr>
+            <tr>
+                <th>Start Time</th>
+                <td>{{ booking_data.start_time }}</td>
+            </tr>
+            <tr>
+                <th>Destination Time</th>
+                <td>{{ booking_data.destination_time }}</td>
+            </tr>
+            <tr>
+                <th colspan="2">Passenger Details</th>
+            </tr>
+            {% for passenger in booking_data['passenger_details'] %}
+                <tr>
+                    <td colspan="2">Passenger {{ loop.index }} Details</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ passenger.name }}</td>
+                </tr>
+                <tr>
+                    <th>Age</th>
+                    <td>{{ passenger.age }}</td>
+                </tr>
+                <tr>
+                    <th>Sex</th>
+                    <td>{{ passenger.sex }}</td>
+                </tr>
+                <tr>
+                    <th>Seat Number</th>
+                    <td>{{passenger.seat_number}}</td>
+                </tr>
+                <tr>
+                    <th>Fare</th>
+                    <td>{{ passenger.fare }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <th>Total Fare</th>
+                <td>{{ booking_data.total_fare }}</td>
+            </tr>
+        </table>
+        <a href="{{url_for('download',booking_data=booking_data)}}">
+
+            <button style="background-color: rgb(30, 67, 91); padding: 10px; color: white;" >
+
+                <i class="fas fa-arrow-circle-down"> Download</i>
+
+            </button>
+
+        </a>
+    </div>
+</body>
+</html>

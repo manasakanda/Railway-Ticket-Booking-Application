@@ -1,0 +1,92 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Train Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .container {
+            display: flex;
+            justify-self: center;
+            align-items: center;
+            padding-top: 3rem;
+            position: relative;
+        }
+
+        
+
+        .table {
+            top: 0;
+            right: 10vw;
+            background-color: #fff;
+            padding: 1rem;
+            padding-right: 4rem;
+            border: 1px solid #ccc;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        </style>
+
+<div class="container">
+    <div class="col-lg-12 text-center">
+      <h1>Available Trains</h1>
+        < Creating the train details table 
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Train Number</th>
+                    <th>Source Location</th>
+                    <th>Destination</th>
+                    <th>Departure Time</th>
+                    <th>Arrival Time</th>
+                    <th>Coaches</th>
+                    <th>no_of_coaches</th>
+                    <th>Total Seats</th>
+                    <th>Fare</th>
+                    <th>Days of week</th>
+                    <th>Status</th>
+                    </tr>
+            </thead>
+            <tbody>
+                {% for train in trains %}
+                <tr>
+                    <td>{{ train.train_no }}</td>
+                    <td>{{ train.source }}</td>
+                    <td>{{ train.destination }}</td>
+                    <td>{{ train.start_time }}</td>
+                    <td>{{ train.destination_time }}</td>
+                    <td>{{ train.coaches }}</td>
+                    <td>{{ train.no_of_coaches }}</td>
+                    <td>{{ train.total_seats }}</td>
+                    <td>{{ train.fare }}</td>
+                    <td>
+
+                        {% for days_of_week in train.days_of_week%}
+            
+                        {{days_of_week}}<br>
+            
+                        {% endfor %}
+            
+                        </td>
+                    <td>
+
+                        {% for status in train.status%}
+                
+                         {{status}}<br>
+                
+                        {% endfor %}
+                
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div> -->
+
+
+<html>
+  {% for train in trains%}
+  {{train.train_no}}
+  {% endfor%}
+</html>
